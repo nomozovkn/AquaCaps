@@ -1,4 +1,7 @@
 
+using AquaCaps.Api.Configurations;
+using AquaCaps.Api.Endpoints;
+
 namespace AquaCaps.Api
 {
     public class Program
@@ -13,6 +16,11 @@ namespace AquaCaps.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.ConfigureDB();
+            builder.Configure();
+
+
 
             var app = builder.Build();
 
@@ -29,6 +37,12 @@ namespace AquaCaps.Api
 
 
             app.MapControllers();
+            app.MapAuthEndpoints();
+            app.MapAdminEndpoints();
+            app.MapCourierEndpoints();
+            app.MapCustomerEndpoints();
+            app.MapRoleEndpoints();
+
 
             app.Run();
         }
